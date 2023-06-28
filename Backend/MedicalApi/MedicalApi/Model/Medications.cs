@@ -1,0 +1,10 @@
+﻿namespace MedicalApi.Model
+{
+    public class Medications
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public string AnvisaCode { get; set; }
+    }
+}
