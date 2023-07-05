@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalApi.Data;
 using MedicalApi.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class PatientsController : ControllerBase
@@ -21,7 +23,6 @@ namespace MedicalApi.Controllers
             _context = context;
         }
 
-        // GET: api/Patients
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Patients>>> GetPatients()
         {
@@ -32,7 +33,6 @@ namespace MedicalApi.Controllers
             return await _context.Patients.ToListAsync();
         }
 
-        // GET: api/Patients/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Patients>> GetPatients(int id)
         {
@@ -50,8 +50,7 @@ namespace MedicalApi.Controllers
             return patients;
         }
 
-        // PUT: api/Patients/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize, Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPatients(int id, Patients patients)
         {
@@ -81,8 +80,7 @@ namespace MedicalApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Patients
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Patients>> PostPatients(Patients patients)
         {
@@ -96,7 +94,7 @@ namespace MedicalApi.Controllers
             return CreatedAtAction("GetPatients", new { id = patients.Id }, patients);
         }
 
-        // DELETE: api/Patients/5
+        [Authorize, Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePatients(int id)
         {

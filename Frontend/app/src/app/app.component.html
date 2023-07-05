@@ -1,0 +1,19 @@
+<div class="toolbar" role="banner">
+  <img
+    width="40"
+    alt="Angular Logo"
+    src="../assets/medical-logo.png"
+  />
+  <span>Sistema médico</span>
+  <div  class="content">
+    <button (click)="goToPage('Login')">Login</button>
+    <button (click)="goToPage('Pacientes')">Pacientes</button>
+    <button (click)="goToPage('Medicos')">Medicos</button>
+    <button (click)="goToPage('Medicamentos')">Medicamentos</button>
+    <button (click)="goToPage('Receitas')">Gerar Receita</button>
+  </div>
+</div>
+
+<div role="main"></div>
+
+<router-outlet></router-outlet>

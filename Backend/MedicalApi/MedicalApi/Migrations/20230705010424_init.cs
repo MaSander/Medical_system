@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace MedicalApi.Data.Migrations
+namespace MedicalApi.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration
@@ -12,9 +12,6 @@ namespace MedicalApi.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Doctor");
-
             migrationBuilder.CreateTable(
                 name: "Doctors",
                 columns: table => new
@@ -58,6 +55,22 @@ namespace MedicalApi.Data.Migrations
                 {
                     table.PrimaryKey("PK_Patients", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Username = table.Column<string>(type: "text", nullable: true),
+                    PasswordHash = table.Column<byte[]>(type: "bytea", nullable: false),
+                    PasswordSalt = table.Column<byte[]>(type: "bytea", nullable: false),
+                    IdTypeUserNavigation = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
@@ -72,19 +85,8 @@ namespace MedicalApi.Data.Migrations
             migrationBuilder.DropTable(
                 name: "Patients");
 
-            migrationBuilder.CreateTable(
-                name: "Doctor",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Crm = table.Column<string>(type: "text", nullable: true),
-                    Name = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Doctor", x => x.Id);
-                });
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }

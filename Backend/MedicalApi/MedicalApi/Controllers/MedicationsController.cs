@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalApi.Data;
 using MedicalApi.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalApi.Controllers
 {
@@ -53,6 +54,7 @@ namespace MedicalApi.Controllers
         // PUT: api/Medications/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize, Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutMedications(int id, Medications medications)
         {
             if (id != medications.Id)
@@ -84,6 +86,7 @@ namespace MedicalApi.Controllers
         // POST: api/Medications
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Medications>> PostMedications(Medications medications)
         {
           if (_context.Medications == null)
@@ -98,6 +101,7 @@ namespace MedicalApi.Controllers
 
         // DELETE: api/Medications/5
         [HttpDelete("{id}")]
+        [Authorize, Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteMedications(int id)
         {
             if (_context.Medications == null)

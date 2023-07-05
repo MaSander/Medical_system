@@ -1,0 +1,69 @@
+# API de Gerenciamento Médico
+
+Essa é uma API desenvolvida em ASP.NET 6.0 com o padrão Code First para gerenciamento de Medicamentos, Pacientes e Médicos, utilizando o banco de dados PostgreSQL. Ela fornece endpoints para criar, recuperar, atualizar e excluir registros em cada uma das tabelas mencionadas.
+
+## Configuração do Banco de Dados
+
+Antes de executar a API, é necessário configurar o banco de dados PostgreSQL. Certifique-se de ter o PostgreSQL instalado e uma instância de banco de dados disponível.
+
+1. Abra o arquivo `appsettings.json` e localize a seção `ConnectionStrings`.
+2. Edite a string de conexão `DefaultConnection` com as informações adequadas do seu banco de dados PostgreSQL, como o nome do servidor, nome do banco de dados, nome de usuário e senha.
+
+Exemplo:
+```json
+"ConnectionStrings": {
+  "DefaultConnection": "Host=localhost;Database=meu_banco_de_dados;Username=meu_usuario;Password=minha_senha"
+}
+```
+
+## Executando o Projeto
+
+1. Certifique-se de ter o .NET 6.0 SDK instalado em sua máquina.
+2. Abra o terminal do Visual Studio e navegue até a pasta raiz do projeto.
+3. Execute o seguinte comando para restaurar as dependências do projeto:
+   ```
+   dotnet restore
+   ```
+4. Em seguida, execute o comando para adicionar uma migração inicial:
+   ```
+   add-migration init
+   ```
+5. Agora, execute o comando para aplicar as migrações e criar o banco de dados:
+   ```
+   update-database
+   ```
+6. Agora você pode iniciar o projeto pressionando F5 ou clicando em "Executar" no Visual Studio.
+
+## Endpoints
+
+A API possui os seguintes endpoints disponíveis:
+
+### Medications
+
+- `GET /api/medications`: Retorna todos os medicamentos cadastrados.
+- `GET /api/medications/{id}`: Retorna um medicamento específico com base no ID.
+- `POST /api/medications`: Cria um novo medicamento.
+- `PUT /api/medications/{id}`: Atualiza um medicamento existente com base no ID.
+- `DELETE /api/medications/{id}`: Exclui um medicamento com base no ID.
+
+### Patients
+
+- `GET /api/patients`: Retorna todos os pacientes cadastrados.
+- `GET /api/patients/{id}`: Retorna um paciente específico com base no ID.
+- `POST /api/patients`: Cria um novo paciente.
+- `PUT /api/patients/{id}`: Atualiza um paciente existente com base no ID.
+- `DELETE /api/patients/{id}`: Exclui um paciente com base no ID.
+
+### Doctors
+
+- `GET /api/doctors`: Retorna todos os médicos cadastrados.
+- `GET /api/doctors/{id}`: Retorna um médico específico com base no ID.
+- `POST /api/doctors`: Cria um novo médico.
+- `PUT /api/doctors/{id}`: Atualiza um médico existente com base no ID.
+- `DELETE /api/doctors/{id}`: Exclui um médico com base no ID.
+
+Para mais detalhes sobre os endpoints, consulte a documentação da API.
+
+## Considerações Finais
+
+Essa API fornece recursos básicos para o gerenci
