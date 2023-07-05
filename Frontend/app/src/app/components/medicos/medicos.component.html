@@ -1,20 +1,19 @@
 <h1>Medicos</h1>
 
+<div>
+  <h3>Adicionar Medico</h3>
+  <div>
+    <label for="nome">Nome:</label>
+    <input id="nome" [(ngModel)]="name" placeholder="Nome do médico">
+    <label for="crm">CRM:</label>
+    <input id="crm" [(ngModel)]="crm" placeholder="CRM do médico">
+    <button (click)="criarMedico()">Adicionar</button>
+  </div>
+</div> 
+
 <ul>
   <li *ngFor="let medico of medicos">
     {{ medico.name }} - CRM: {{ medico.crm }}
     <button (click)="deletarMedico(medico.id)">Deletar</button>
   </li>
 </ul>
-
-<div>
-  <h3>Adicionar Medico</h3>
-  <div>
-    <label for="nome">Nome:</label>
-    <input id="nome" [(ngModel)]="nome" placeholder="Nome do médico">
-    <label for="crm">CRM:</label>
-    <input id="crm" [(ngModel)]="crm" placeholder="CRM do médico">
-    <button (click)="criarMedico()">Adicionar</button>
-  </div>
-</div> 
-<!-- <app-medicos></app-medicos> -->

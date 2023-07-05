@@ -1,1 +1,21 @@
-<p>medicamentos works!</p>
+<p>Medicamentos</p>
+
+<div>
+  <h3>Adicionar Medicamento</h3>
+  <div>
+    <label for="nome">Nome:</label>
+    <input id="nome" [(ngModel)]="name" placeholder="Nome do medicamento">
+    <label for="category">Categoria:</label>
+    <input id="category" [(ngModel)]="category" placeholder="Categoria">
+    <label for="anvisaCode">Código Anvisa:</label>
+    <input id="anvisaCode" [(ngModel)]="anvisaCode" placeholder="Código Anvisa">
+    <button (click)="criarMedicamento()">Adicionar</button>
+  </div>
+</div>
+
+<ul>
+  <li *ngFor="let medicamento of medicamentos">
+    {{ medicamento.name }} - Código: {{ medicamento.anvisaCode }}
+    <button (click)="deletarMedicamento(medicamento.id)">Deletar</button>
+  </li>
+</ul>

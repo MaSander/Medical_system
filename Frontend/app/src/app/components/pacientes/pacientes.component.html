@@ -1,1 +1,22 @@
-<p>pacientes works!</p>
+<h1>Pacientes</h1>
+
+<div>
+  <h3>Adicionar Paciente</h3>
+  <div>
+    <label for="name">Nome:</label>
+    <input id="nome" [(ngModel)]="name" placeholder="Nome do paciente">
+    <label for="cpf">CPF:</label>
+    <input id="cpf" [(ngModel)]="cpf" placeholder="cpf do paciente">
+    <label for="dateOfBirth">Data de nacimento:</label>
+    <input type="date" id="dateOfBirth" [(ngModel)]="dateOfBirth">
+    <input type="time" id="timeOfBirth" [(ngModel)]="timeOfBirth">
+    <button (click)="criarPaciente()">Adicionar</button>
+  </div>
+</div>
+
+<ul>
+  <li *ngFor="let paciente of pacientes">
+    {{paciente.name}} - Idade {{paciente.dateOfBirth}}
+    <button (click)="deletarPaciente(paciente.id)">Deletar</button>
+  </li>
+</ul>
