@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Paciente, PacienteInfo } from './paciente';
 
 @Component({
@@ -28,8 +29,9 @@ export class PacientesComponent {
     this.getPacienteList();
   }
 
-  getPacienteList(): void {
-    this.http.get<Paciente[]>(this.apiUrl).subscribe((result: Paciente[]) => this.pacientes = result)
+  getPacienteList() {
+    this.http.get<Paciente[]>(this.apiUrl)
+    .subscribe((result: Paciente[]) => this.pacientes = result)
   }
 
   criarPaciente(): void {
@@ -51,4 +53,15 @@ export class PacientesComponent {
     this.http.delete(`${this.apiUrl}/${id}`, {headers: this.headers})
     .subscribe(() => this.getPacienteList());
   }
+
+  calcularIdade(date: string): number {
+    var today: number = new Date().getFullYear();
+    var patienteDate = new Date(date);
+    return today - patienteDate.getFullYear();
+  }
+
+  getFormatedDate(date: Date, format: string) {
+    const datePipe = new DatePipe('pt-BR');
+    return datePipe.transform(date, format);
+}
 }

@@ -16,7 +16,7 @@
 
 <ul>
   <li *ngFor="let paciente of pacientes">
-    {{paciente.name}} - Idade {{paciente.dateOfBirth}}
+    {{paciente.name}} - Idade {{calcularIdade(paciente.dateOfBirth)}}
     <button (click)="deletarPaciente(paciente.id)">Deletar</button>
   </li>
 </ul>

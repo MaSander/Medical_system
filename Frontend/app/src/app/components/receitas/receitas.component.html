@@ -1,1 +1,34 @@
-<p>receitas works!</p>
+<h1>Receita</h1>
+
+
+<div>
+  <h3>Medico</h3>
+  <select [(ngModel)]="medicoId">
+    <option id="medico" *ngFor="let medico of medicos" [value]="medico.id">{{medico.name}}</option>
+  </select>
+</div>
+
+<div>
+  <h3>Paciente</h3>
+  <select [(ngModel)]="pacienteId">
+    <option id="paciente" *ngFor="let paciente of pacientes" [value]="paciente.id">{{paciente.name}}</option>
+  </select>
+</div>
+
+
+<div>
+  <h3>Medicamentos</h3>
+  <select [(ngModel)]="remedio">
+    <option id="medicamento" *ngFor="let medicamento of medicamentos" [value]="medicamento.name">{{medicamento.name}}</option>
+  </select>
+  <input [(ngModel)]="remedio_qtd" id="medicamento_qtd" type="number">
+  <button (click)="addRemedio()">Adicionar remédio</button>
+</div>
+
+<ul>
+  <li *ngFor="let remedio of remedios">
+    {{remedio}}
+  </li>
+</ul>
+
+<button (click)="gerarReceita()">Imprimir receita</button>

@@ -2,7 +2,8 @@ export interface Paciente {
   id: number;
   name: string;
   cpf: string;
-  dateOfBirth: Date;
+  dateOfBirth: string;
+  idade: number;
 }
 
 export interface PacienteInfo {
